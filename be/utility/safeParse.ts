@@ -6,8 +6,7 @@ export const safeParse = <Schema extends z.ZodTypeAny>(schema: Schema, data: unk
   
   const result = schema.safeParse(data);
   if (result.success === false) {
-    console.log("safeParse safeParse error");
-    // console.log("",result.error);
+    console.log(result.error);
     return null
   }
   return result.data;
@@ -15,7 +14,7 @@ export const safeParse = <Schema extends z.ZodTypeAny>(schema: Schema, data: unk
 
 
 
-const deepCopy = <T>(a: T): T =>  {
+const deepCopy = <T>(a: T): string =>  {
   return JSON.parse(JSON.stringify(a))
 }
 
@@ -66,9 +65,6 @@ const secondLoginResponse: Response<string> = {
   isPending: false,
   data: "5"
 }
-
-
-
 
 
 // export const ZodSafeParse = (zodType: any, object: object | unknown, status: number, res: Response) => {

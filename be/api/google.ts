@@ -1,16 +1,11 @@
 import axios, { AxiosResponse } from "axios"
 import { z } from "zod"
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const client_id = process.env.CLIENT_ID
 const client_secret = process.env.CLIENT_SECRET
 const redirect_uri = process.env.REDIRECT_URI
 
 const url = "https://oauth2.googleapis.com/token"
-
-
 
 const Response= z.object({
     id_token: z.string(),
@@ -20,9 +15,7 @@ const Response= z.object({
     scope: z.string(),
     token_type: z.literal("Bearer")
 })
-
 type Response = z.infer<typeof Response>
-
 
 
 export const getIdToken = async (code: string): Promise<string|null> => {
