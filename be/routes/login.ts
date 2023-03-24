@@ -27,7 +27,6 @@ type Payload = z.infer<typeof Payload>;
 
 router.post("/", verify(LoginRequestSchema), async (req: Request, res: Response) => {
 
-  // const loginRequest: LoginRequest = req.body
   const loginRequest = req.body as LoginRequest
   const idToken = await getIdToken(loginRequest.code);
   if (!idToken) return res.status(401);
