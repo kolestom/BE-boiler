@@ -1,9 +1,6 @@
 import axios, { AxiosResponse } from "axios"
 import { z } from "zod"
-
-const client_id = process.env.CLIENT_ID
-const client_secret = process.env.CLIENT_SECRET
-const redirect_uri = process.env.REDIRECT_URI
+import { env } from "../utility/envParser"
 
 const url = "https://oauth2.googleapis.com/token"
 
@@ -22,9 +19,9 @@ export const getIdToken = async (code: string): Promise<string|null> => {
     
     try {
     const response: AxiosResponse = await axios.post(url, {
-        client_id,
-        client_secret,
-        redirect_uri,
+        client_id: env.CLIENT_ID,
+        client_secret: env.CLIENT_SECRET,
+        redirect_uri: env.REDIRECT_URI,
         code,
         grant_type:"authorization_code"
     })
