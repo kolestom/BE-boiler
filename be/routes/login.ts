@@ -5,12 +5,13 @@ import { safeParse } from "../utility/safeParse";
 import { z } from "zod";
 import { getIdToken } from "../api/google";
 import {User, type UserType} from "../model/user"
+import { env } from "../utility/envParser";
 
 const router = express.Router();
 
-const secretKey = process.env.JWT_SECRET_KEY
+// const secretKey = process.env.JWT_SECRET_KEY
 // const secretKey = process.env.JWT_SECRET_KEY || "demo_key";
-if (!secretKey) throw "Secret Key is required";
+if (!env.JWT_SECRET_KEY) throw "Secret Key is required";
 
 const LoginRequestSchema = z.object({
   code: z.string(),
@@ -41,7 +42,7 @@ router.post("/", verify(LoginRequestSchema), async (req: Request, res: Response)
   const user = new User(data);
   await user.save()
   
-  const sessionToken = jwt.sign(result, secretKey);
+  const sessionToken = jwt.sign(result, env.JWT_SECRET_KEY);
   res.send(sessionToken);
 });
 export default router;

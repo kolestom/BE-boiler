@@ -14,11 +14,11 @@ app.use(cors())
 app.use(express.json());
 app.use('/api/signup', signup)
 
-const mongourl = process.env.MONGO_URL as string
+const mongourl = env.MONGO_URL
 //zoddal validalni env 
 
 mongoose.connect(env.MONGO_URL)
 
 app.listen(env.PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${env.PORT}`);
+  console.log(`⚡️[server]: Server is running at http://localhost:${env.PORT} for EXPRESS_TS_BOILERPLATE`);
 });
