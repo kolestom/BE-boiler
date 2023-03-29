@@ -12,7 +12,7 @@ const app: Express = express();
 
 app.use(cors())
 app.use(express.json());
-app.use('/api/signup', signup)
+app.use('/api/login', signup)
 app.use('/api/appointment', appointments)
 
 // const mongourl = env.MONGO_URL
