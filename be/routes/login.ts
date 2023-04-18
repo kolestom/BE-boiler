@@ -53,7 +53,7 @@ router.post("/", verify(LoginRequestSchema), async (req: Request, res: Response)
   // const newUser = new User(data);
   // await newUser.save()
   
-  const sessionToken = jwt.sign(result, env.JWT_SECRET_KEY);
+  const sessionToken = jwt.sign(result, env.JWT_SECRET_KEY, {expiresIn: "5h"});
   res.send({token: sessionToken});
 });
 export default router;
